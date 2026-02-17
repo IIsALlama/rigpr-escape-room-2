@@ -1,0 +1,212 @@
+{
+  "main": {
+    "id": "b36760af4fa2e28a",
+    "type": "split",
+    "children": [
+      {
+        "id": "d61ebadc39c0c4e1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "0138dcd019a0ee76",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "CONTRIBUTING.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "CONTRIBUTING"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "50d710e05f568319",
+    "type": "split",
+    "children": [
+      {
+        "id": "34eadc31ce3edfe7",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "309f2fd0a9df0e09",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical",
+                "autoReveal": false
+              },
+              "icon": "lucide-folder-closed",
+              "title": "Files"
+            }
+          },
+          {
+            "id": "dac6727110fb0f9c",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              },
+              "icon": "lucide-search",
+              "title": "Search"
+            }
+          },
+          {
+            "id": "1bec0242e3a0ab51",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {},
+              "icon": "lucide-bookmark",
+              "title": "Bookmarks"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300
+  },
+  "right": {
+    "id": "060395aa19990e5e",
+    "type": "split",
+    "children": [
+      {
+        "id": "2f84607e8b8eb1f1",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "7cc75325ec19054f",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "CONTRIBUTING.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-coming-in",
+              "title": "Backlinks for CONTRIBUTING"
+            }
+          },
+          {
+            "id": "83a4fdd9dd14166d",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "CONTRIBUTING.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              },
+              "icon": "links-going-out",
+              "title": "Outgoing links from CONTRIBUTING"
+            }
+          },
+          {
+            "id": "2b53be83f2f8f0cd",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-tags",
+              "title": "Tags"
+            }
+          },
+          {
+            "id": "5703e8b169f4a9a0",
+            "type": "leaf",
+            "state": {
+              "type": "all-properties",
+              "state": {
+                "sortOrder": "frequency",
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-archive",
+              "title": "All properties"
+            }
+          },
+          {
+            "id": "fa4a445eae4812b3",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "CONTRIBUTING.md",
+                "followCursor": false,
+                "showSearch": false,
+                "searchQuery": ""
+              },
+              "icon": "lucide-list",
+              "title": "Outline of CONTRIBUTING"
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Open quick switcher": false,
+      "graph:Open graph view": false,
+      "canvas:Create new canvas": false,
+      "daily-notes:Open today's daily note": false,
+      "templates:Insert template": false,
+      "command-palette:Open command palette": false,
+      "bases:Create new base": false
+    }
+  },
+  "active": "0138dcd019a0ee76",
+  "lastOpenFiles": [
+    "Temp/UnityTempFile-89d752cf3ab1baa47be172759ee9f2b0",
+    "Temp/UnityTempFile-85896987dc3d7c3479b94e4905d288a9",
+    "Temp/UnityTempFile-d5361be755517524e99577950c535612",
+    "Library/Search/propertyDatabase.db_4e529395fecb4dd295b08556fcb3ca9e_temp",
+    "Temp/ADB-Refresh69e6eae09efe44246b597f9deef1b0e5",
+    "Temp/UnityTempFile-72c0a5882c0bf53468eb36876e5a406f",
+    "Temp/UnityTempFile-6a17534840c9dd945a2db252f82aa950",
+    "Temp/UnityTempFile-87d0bcff804e2bd4f8ac80d34318c7e9",
+    "Temp/UnityTempFile-9c0dd124ee1e3fb468f480d49e7aac73",
+    "Temp/ADB-Refresh251c7dd68f04fb6438c9e2dd89d30aea",
+    "Library/Bee/TundraBuildState.state",
+    "Assets/TextMesh Pro/Sprites/EmojiOne.png",
+    "Temp/Export Package/fcb31106a69efc943893675bc7302812/e73a58f6e2794ae7b1b7e50b7fb811b0/preview.png",
+    "Assets/TutorialInfo/Icons/URP.png",
+    "Assets/TextMesh Pro/Resources/Sprite Assets/InlineIcons.png",
+    "Assets/Settings/Project Configuration/TemplateImage.png",
+    "Assets/Samples/XR Interaction Toolkit/3.2.1/Starter Assets/DemoSceneAssets/Sprites/Round Radius 4.png",
+    "Assets/Samples/XR Interaction Toolkit/3.2.1/Starter Assets/DemoSceneAssets/Sprites/Round Radius 4 Outline.png",
+    "Assets/Samples/XR Interaction Toolkit/3.2.1/Starter Assets/DemoSceneAssets/Sprites/LegibilityMask.png",
+    "Assets/Samples/XR Interaction Toolkit/3.2.1/Starter Assets/DemoSceneAssets/Sprites/Forward.png",
+    "Assets/Samples/XR Interaction Toolkit/3.2.1/Starter Assets/DemoSceneAssets/Sprites/Circle_60x60_Horizontal.png",
+    "README.md",
+    "CONTRIBUTING.md"
+  ]
+}

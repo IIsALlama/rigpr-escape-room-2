@@ -1,0 +1,111 @@
+:: StoryTitle
+Dialogue Test
+
+
+:: StoryData
+{
+  "ifid": "34CD3343-6A20-452A-AFCA-058764793FF8",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Start",
+  "zoom": 1
+}
+
+
+:: 1 {"position":"675,500","size":"100,100"}
+You have chosen to speak with the manager. One moment.
+
+[[Speak with Manager]]
+
+
+:: 2 {"position":"800,500","size":"100,100"}
+You have chosen to speak with a guest
+
+(if:$guest is False) Unfortunately, there are currently no guests on the system, so I shall redirect you to speak with the manager.
+
+[[Speak with Manager]] 
+
+
+:: 3 {"position":"925,500","size":"100,100"}
+You have chosen to have the floor below you open and send you straight into a pit of lava because it's better than working here.
+
+Unfortunately, "health and safety" have prevented us from installing that
+
+We can instead offer you the emotional equivalent of that, which is speaking to the manager
+
+[[Speak with Manager]] 
+
+
+:: Adam {"position":"612.5,750","size":"100,100"}
+Adam, eh? Well, for all intensive purposes, let's call you Steve from here on out.
+
+[[Alright]]
+[[Why?]]
+
+
+:: Alright {"position":"487.5,875","size":"100,100"}
+Glad to see we're on the same page.
+
+Now, your task. One of our guests here has requested for some quiche to be delivered via our state of the art chute system. There should already be one somewhere in your office, so get on it. Remember, efficiency is key, and you will be given points based on performance.
+
+
+:: Bob {"position":"737.5,750","size":"100,100"}
+Bob, eh? Well, for all intensive purposes, let's call you Steve from here on out.
+
+[[Alright]]
+[[Why?]]
+
+
+:: Derek {"position":"612.5,875","size":"100,100"}
+Derek, eh? Well, for all intensive purposes, let's call you Steve from here on out.
+
+[[Alright]]
+[[Why?]]
+
+
+:: Speak with Manager {"position":"675,625","size":"100,100"}
+Hello? Is this thing working?
+
+Ah, you must be our new employee. Welcome, welcome.
+
+Firstly, who are you?
+
+[[Adam]]
+[[Bob]]
+[[Derek]]
+[[This system doesn't let me type my name]]
+
+
+
+
+:: This system doesn't let me type my name {"position":"1100,625","size":"100,100"}
+Well, for all intensive purposes, let's call you Steve from here on.
+
+[[Alright]]
+[[Why]]
+
+
+:: Start {"position":"800,375","size":"100,100"}
+Welcome to the Grandchain Hotel.
+
+If you would like to speak to the manager, press 1
+
+If you would like to speak to a guest, press 2
+
+If you would like the floor below you to open up and send you directly to a pit of lava to escape the experience of working here, press 3
+
+[[1]]
+[[2]]
+[[3]]
+
+(set:$guest1 to False)
+
+
+:: Why {"position":"1100,750","size":"100,100"}
+
+
+
+:: Why? {"position":"612.5,1000","size":"100,100"}
+Why not? It's a good name, isn't it? 
+
+Now, your task. One of our guests here has requested for some quiche to be delivered via our state of the art chute system. There should already be one somewhere in your office, so get on it. Remember, efficiency is key, and you will be given points based on performance.
