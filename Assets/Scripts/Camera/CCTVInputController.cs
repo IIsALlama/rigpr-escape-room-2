@@ -1,20 +1,35 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CCTVInputController : MonoBehaviour
 {
     public CameraManager cameraManager;
     public RoutingApp routingApp;
 
+    [Header("Rat puzzle hatch")]
+    [SerializeField] private int ratPuzzleCameraIndex = 3; // 0-based
+    [SerializeField] private RatHatch ratHatch;
+    [SerializeField] private bool ratHatchUsesLeftClick = true;
+
     void Update()
     {
-        if (routingApp == null || cameraManager == null) return;
+        if (cameraManager == null) { Debug.LogWarning("[CCTV] cameraManager NULL", this); return; }
+        if (!Input.GetMouseButtonDown(0)) return;
 
-        if (!routingApp.manualDrop) return;
+        int camIndex = cameraManager.CurrentCameraIndex;
+        Debug.Log($"[CCTV] Click camIndex={camIndex}", this);
 
-        if (routingApp.manualDrop == true && Input.GetMouseButtonDown(0))
+        if (ratHatchUsesLeftClick && camIndex == ratPuzzleCameraIndex)
         {
-            DropFromCurrentCamera();
+            Debug.Log($"[CCTV] Rat cam click. ratHatch={(ratHatch ? ratHatch.name : "NULL")}", this);
+            ratHatch?.Dispense();
+            return;
         }
+
+        if (routingApp == null) { Debug.LogWarning("[CCTV] routingApp NULL", this); return; }
+        if (!routingApp.manualDrop) { Debug.Log("[CCTV] manualDrop is FALSE", this); return; }
+
+        DropFromCurrentCamera();
     }
 
     public void DropFromCurrentCamera()
@@ -23,8 +38,14 @@ public class CCTVInputController : MonoBehaviour
         int containerID = camIndex + 1;
 
         ContainerSlot target = ContainerManager.Instance.GetContainer(containerID);
-        if (target == null) return;
+        if (target == null)
+        {
+            Debug.LogWarning($"[CCTV] No ContainerSlot for containerID={containerID}. Check IDs.", this);
+            return;
+        }
 
+        Debug.Log($"[CCTV] Eject from containerID={containerID} hasItem={target.HasItem()}", target);
         target.EjectItem();
     }
+
 }

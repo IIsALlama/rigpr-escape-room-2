@@ -30,10 +30,10 @@ public class ContainerSlot : MonoBehaviour
 
     void Update()
     {
-        if(ejectPending && storedItem != null)
+        if (ejectPending && storedItem != null)
         {
             ejectTimer -= Time.deltaTime;
-            if(ejectTimer <= 0f)
+            if (ejectTimer <= 0f)
             {
                 EjectItem();
                 ejectPending = false;
@@ -42,14 +42,14 @@ public class ContainerSlot : MonoBehaviour
     }
 
     public bool HasItem() => storedItem != null;
-    
+
     public bool TryStoreItem(HoldableItem item)
     {
         if (!isMainContainer || storedItem != null)
             return false;
 
         storedItem = item;
-        item.Store(this); 
+        item.Store(this);
         return true;
     }
 
@@ -85,7 +85,7 @@ public class ContainerSlot : MonoBehaviour
     public void EjectItem()
     {
 
-        if(storedItem == null) return;
+        if (storedItem == null) return;
         Debug.Log("Ejecting Item from ContainerSlot ID: " + containerID);
 
         HoldableItem item = storedItem;

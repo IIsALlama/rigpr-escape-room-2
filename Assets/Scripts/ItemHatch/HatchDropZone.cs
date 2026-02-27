@@ -27,7 +27,7 @@ public class HatchDropZone : MonoBehaviour
                 case ItemType.Food:
                     // Handle food item logic
                     break;
-                case ItemType.Bomb:
+                case ItemType.Can:
                     // Handle tool bomb logic
                     break;
 

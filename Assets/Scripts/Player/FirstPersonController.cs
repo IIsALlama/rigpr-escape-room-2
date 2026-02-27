@@ -125,7 +125,7 @@ public class FirstPersonController : MonoBehaviour
 
         if (!isGrounded || !moving)
         {
-            Debug.Log($"No steps. grounded={isGrounded} moving={moving} vel={controller.velocity}");
+            //Debug.Log($"No steps. grounded={isGrounded} moving={moving} vel={controller.velocity}");
             stepTimer = walkStepInterval * 0.5f;
             return;
         }

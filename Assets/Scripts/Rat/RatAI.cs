@@ -1,22 +1,16 @@
+using System.Collections;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
 public class RatAI : MonoBehaviour
 {
-    public enum AfterCheeseBehaviour
-    {
-        ReturnToHoleAndDespawn,
-        ContinueToDoorAndDespawn,
-        StopAndWait
-    }
-
-    [Header("Puzzle Toggle")]
-    [SerializeField] private bool puzzleEnabled = false;
-
     [Header("Targets")]
-    [SerializeField] private Transform holeTarget;
-    [SerializeField] private Transform pausePoint;
-    [SerializeField] private Transform doorTarget;
+    private Transform holeTarget;
+    private Transform pauseTarget;
+    private Transform doorTarget;
+
+    [Header("Can Detection")]
+    public GameObject canDropDetection;
 
     [Header("Movement")]
     [SerializeField] private float moveSpeed = 2.5f;
@@ -33,16 +27,11 @@ public class RatAI : MonoBehaviour
     [SerializeField] private bool doPause = true;
     [SerializeField] private float pauseDuration = 1.0f;
 
-    [Header("Cheese Interaction")]
-    [SerializeField] private ItemType requiredItemType = ItemType.Cheese;
-    [SerializeField] private Transform carryAnchor;
-    [SerializeField]
-    private AfterCheeseBehaviour afterCheeseBehaviour =
-        AfterCheeseBehaviour.ReturnToHoleAndDespawn;
-    [SerializeField] private bool despawnCheeseWithRat = true;
-
-    [Header("Optional Rules")]
-    [SerializeField] private bool onlyAcceptCheeseWhilePaused = false;
+    [Header("Shock")]
+    [SerializeField] private GameObject shockCanvas;
+    [SerializeField] private float hopHeight = 0.15f;
+    [SerializeField] private float hopTime = 0.12f;
+    private Coroutine hopRoutine;
 
     private enum State { ToPause, Paused, ToDoor, ToHole, ToDoorAfterCheese, Stopped }
     private State state;
@@ -51,14 +40,27 @@ public class RatAI : MonoBehaviour
     private HoldableItem carriedItem;
     private float pauseTimer;
 
+    public void Init(RatWorldRefs refs)
+    {
+        holeTarget = refs.holeTarget;
+        pauseTarget = refs.pauseTarget;
+        doorTarget = refs.doorTarget;
+        canDropDetection = refs.canDropZone;
+
+        ResetRat();
+
+    }
+
+
     private void OnEnable()
     {
+        shockCanvas.SetActive(false);
+
         // ensure trigger
         Collider c = GetComponent<Collider>();
         if (c != null && !c.isTrigger) c.isTrigger = true;
-        Debug.Log($"[RatAI] pausePoint = {(pausePoint ? pausePoint.name : "NULL")} @ {pausePoint?.position}", this);
+        Debug.Log($"[RatAI] pausePoint = {(pauseTarget ? pauseTarget.name : "NULL")} @ {pauseTarget?.position}", this);
 
-        ResetRat();
     }
 
     private void ResetRat()
@@ -67,7 +69,7 @@ public class RatAI : MonoBehaviour
         carriedItem = null;
         pauseTimer = 0f;
 
-        if (doPause && pausePoint != null)
+        if (doPause && pauseTarget != null)
             state = State.ToPause;
         else
             state = State.ToDoor;
@@ -75,23 +77,22 @@ public class RatAI : MonoBehaviour
 
     private void Update()
     {
-        if (!puzzleEnabled) return;
         if (holeTarget == null || doorTarget == null) return;
 
         switch (state)
         {
             case State.ToPause:
-                if (pausePoint == null)
+                if (pauseTarget == null)
                 {
                     state = State.ToDoor;
                     break;
                 }
 
-                if (MoveAndFaceExact(pausePoint.position))
+                if (MoveAndFaceExact(pauseTarget.position))
                 {
                     state = State.Paused;
                     pauseTimer = pauseDuration;
-                    Debug.Log($"[RatAI] PAUSED. RatPos={transform.position} PausePos={pausePoint.position} Delta={(pausePoint.position - transform.position)}");
+                    Debug.Log($"[RatAI] PAUSED. RatPos={transform.position} PausePos={pauseTarget.position} Delta={(pauseTarget.position - transform.position)}");
                     Debug.Log("[RatAI] Reached PAUSE point exactly -> Paused");
 
                 }
@@ -109,7 +110,7 @@ public class RatAI : MonoBehaviour
                 if (MoveAndFaceExact(doorTarget.position))
                 {
                     Debug.Log("[RatAI] Reached DOOR point exactly -> Despawn", this);
-                    DespawnRatAndMaybeCheese();
+                    Destroy(gameObject);
                 }
                 break;
 
@@ -117,21 +118,44 @@ public class RatAI : MonoBehaviour
                 if (MoveAndFaceExact(holeTarget.position))
                 {
                     Debug.Log("[RatAI] Reached HOLE point exactly -> Despawn", this);
-                    DespawnRatAndMaybeCheese();
-                }
-                break;
-
-            case State.ToDoorAfterCheese:
-                if (MoveAndFaceExact(doorTarget.position))
-                {
-                    Debug.Log("[RatAI] Reached DOOR (after cheese) exactly -> Despawn", this);
-                    DespawnRatAndMaybeCheese();
+                    Destroy(gameObject);
                 }
                 break;
 
             case State.Stopped:
                 break;
         }
+    }
+
+    public void Scare()
+    {
+        if (shockCanvas != null) shockCanvas.SetActive(true);
+
+        if (hopRoutine != null) StopCoroutine(hopRoutine);
+        hopRoutine = StartCoroutine(Hop());
+        AudioManager.instance.Play("Rat"); 
+        pauseTimer = 0f;
+        moveSpeed = 2f;
+        state = State.ToHole;
+    }
+
+    private IEnumerator Hop()
+    {
+        float t = 0f;
+        Vector3 start = transform.position;
+
+        while (t < hopTime)
+        {
+            t += Time.deltaTime;
+            float k = t / hopTime;
+
+            float y = Mathf.Sin(k * Mathf.PI) * hopHeight;
+            transform.position = new Vector3(start.x, start.y + y, start.z);
+
+            yield return null;
+        }
+
+        transform.position = start;
     }
 
     private bool MoveAndFaceExact(Vector3 worldTarget)
@@ -191,107 +215,8 @@ public class RatAI : MonoBehaviour
         rotPivot.rotation = Quaternion.Slerp(rotPivot.rotation, desiredWorld, turnSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log($"[RatAI] OnTriggerEnter -> {other.name}", this);
 
-        if (!puzzleEnabled)
-        {
-            Debug.Log("[RatAI] Ignored: puzzleEnabled = false", this);
-            return;
-        }
 
-        if (hasCheese)
-        {
-            Debug.Log("[RatAI] Ignored: already hasCheese = true", this);
-            return;
-        }
 
-        if (onlyAcceptCheeseWhilePaused && state != State.Paused)
-        {
-            Debug.Log($"[RatAI] Ignored: onlyAcceptCheeseWhilePaused = true but state = {state}", this);
-            return;
-        }
 
-        HoldableItem item = other.GetComponentInParent<HoldableItem>();
-        if (item == null)
-        {
-            Debug.Log("[RatAI] Ignored: No HoldableItem found on collider or its parents", this);
-            return;
-        }
-
-        Debug.Log($"[RatAI] HoldableItem found: {item.name} | type={item.itemType} | isHeld={item.isHeld} | isStored={item.isStored}", this);
-
-        if (item.itemType != requiredItemType)
-        {
-            Debug.Log($"[RatAI] Ignored: itemType {item.itemType} != required {requiredItemType}", this);
-            return;
-        }
-
-        if (item.isHeld)
-        {
-            Debug.Log("[RatAI] Ignored: item is still held (isHeld = true)", this);
-            return;
-        }
-
-        Debug.Log("[RatAI] CHEESE ACCEPTED -> attaching + changing behaviour", this);
-
-        hasCheese = true;
-        carriedItem = item;
-
-        AttachItemToRat(item);
-
-        switch (afterCheeseBehaviour)
-        {
-            case AfterCheeseBehaviour.ReturnToHoleAndDespawn:
-                state = State.ToHole;
-                Debug.Log("[RatAI] AfterCheeseBehaviour: ReturnToHoleAndDespawn -> state = ToHole", this);
-                break;
-
-            case AfterCheeseBehaviour.ContinueToDoorAndDespawn:
-                state = State.ToDoorAfterCheese;
-                Debug.Log("[RatAI] AfterCheeseBehaviour: ContinueToDoorAndDespawn -> state = ToDoorAfterCheese", this);
-                break;
-
-            case AfterCheeseBehaviour.StopAndWait:
-                state = State.Stopped;
-                Debug.Log("[RatAI] AfterCheeseBehaviour: StopAndWait -> state = Stopped", this);
-                break;
-        }
-    }
-
-    private void AttachItemToRat(HoldableItem item)
-    {
-        item.isHeld = false;
-        item.isStored = false;
-        item.storedInContainer = null;
-
-        Rigidbody rb = item.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector3.zero;
-            rb.angularVelocity = Vector3.zero;
-            rb.isKinematic = true;
-            rb.useGravity = false;
-        }
-
-        Collider col = item.GetComponent<Collider>();
-        if (col != null) col.enabled = false;
-
-        Transform anchor = carryAnchor != null ? carryAnchor : transform;
-        item.transform.SetParent(anchor, false);
-        item.transform.localPosition = Vector3.zero;
-        item.transform.localRotation = Quaternion.identity;
-        item.gameObject.SetActive(true);
-    }
-
-    private void DespawnRatAndMaybeCheese()
-    {
-        if (despawnCheeseWithRat && carriedItem != null)
-            carriedItem.DeleteItem();
-
-        Destroy(gameObject);
-    }
-
-    public void SetPuzzleEnabled(bool enabled) => puzzleEnabled = enabled;
 }

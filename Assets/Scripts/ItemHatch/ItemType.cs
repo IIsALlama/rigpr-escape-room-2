@@ -1,6 +1,6 @@
 public enum ItemType
 {
     Food,
-    Bomb,
+    Can,
     Cheese,
 }
