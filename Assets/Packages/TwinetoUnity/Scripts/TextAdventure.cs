@@ -64,7 +64,8 @@ namespace SimpleTwineDialogue
         
         [Header("Load from Local")]
         // Filename of the Twee file in the StreamingAssets folder
-        public string localFileName;
+        public string[] localFileNames;
+        private int currentFile = 0;
 
         // Parser instance for reading Twee files
         private TweeParser tweeParser;
@@ -85,8 +86,15 @@ namespace SimpleTwineDialogue
                 StartCoroutine(LoadTweeFile(webFileURL));
                 
             } else {
-                StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileName)));
+                StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
             }
+        }
+
+        [ContextMenu("Next file")]
+        public void NextFile()
+        {
+            currentFile++;
+            StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
         }
        
         /// <summary>
