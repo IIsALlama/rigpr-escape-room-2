@@ -21,6 +21,7 @@ public class RotatingWarningLight : MonoBehaviour
 
     public void Activate()
     {
+        Debug.Log("WEEE WOOOOO");
         isActive = true;
         gameObject.SetActive(true);
     }
