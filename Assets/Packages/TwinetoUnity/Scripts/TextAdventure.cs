@@ -76,9 +76,22 @@ namespace SimpleTwineDialogue
         // Title of the currently displayed passage
         private string currentPassageTitle;
 
+        public static TextAdventure instance;
+
         /// <summary>
         /// Initialize the text adventure and start loading the Twee file
         /// </summary>
+        void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(this);
+            }
+        }
         void Start()
         {
             tweeParser = new TweeParser();

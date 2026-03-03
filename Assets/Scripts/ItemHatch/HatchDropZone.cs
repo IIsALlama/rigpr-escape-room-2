@@ -1,3 +1,4 @@
+using SimpleTwineDialogue;
 using System.Collections;
 using UnityEngine;
 
@@ -25,6 +26,7 @@ public class HatchDropZone : MonoBehaviour
             switch(item.itemType)
             {
                 case ItemType.Food:
+                    TextAdventure.instance.NextFile();
                     // Handle food item logic
                     break;
                 case ItemType.Can:
