@@ -78,6 +78,8 @@ namespace SimpleTwineDialogue
 
         public static TextAdventure instance;
 
+        public GameObject newMessageIcon;
+
         /// <summary>
         /// Initialize the text adventure and start loading the Twee file
         /// </summary>
@@ -108,6 +110,7 @@ namespace SimpleTwineDialogue
         {
             currentFile++;
             StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
+            newMessageIcon.SetActive(true);
         }
        
         /// <summary>

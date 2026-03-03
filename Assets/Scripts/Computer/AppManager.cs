@@ -1,3 +1,4 @@
+using SimpleTwineDialogue;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -45,6 +46,10 @@ public class AppManager : MonoBehaviour
         if (staticOverlay != null)
             staticOverlay.SetActive(currentApp.enablesCCTV);
 
+        if (currentApp.name == "Message")
+        {
+            TextAdventure.instance.newMessageIcon.SetActive(false);
+        }
     }
 
     public void CloseApp()
