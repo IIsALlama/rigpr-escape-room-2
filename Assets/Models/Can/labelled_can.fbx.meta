@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1e1464ee1dc122f49a0eb6bba9c0abed
+guid: d76d294a9bbd4a749a0bf6862da4d8f9
 ModelImporter:
   serializedVersion: 24200
   internalIDToNameTable: []
@@ -7,13 +7,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: CanLabel_m
+    second: {fileID: 2100000, guid: 33c624d9818a5ab43a56c8fb99dfff78, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: standardSurface1
-    second: {fileID: 2100000, guid: c1d7ae0cdf68de94085c4d8dc5b95f80, type: 2}
+    second: {fileID: 2100000, guid: 0b0967b3b7cd3ab498a73d0332a83c41, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: surfacematerial2
-    second: {fileID: 2100000, guid: 5c753e127d40e48438c6cb1a8b0b8dcd, type: 2}
+    second: {fileID: 2100000, guid: 8ce6d1631da3e0f4e866fd02fd97b6cf, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
