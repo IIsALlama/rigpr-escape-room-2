@@ -5,7 +5,7 @@ public class PlayerInteractor : MonoBehaviour
     [Header("Interaction")]
     public float interactRange = 3f;
     public LayerMask interactLayer;
-    public KeyCode interactKey = KeyCode.E;
+
 
     public GameObject interactHelper;
     [SerializeField] private ComputerTerminal computerTerminal;
@@ -30,7 +30,7 @@ public class PlayerInteractor : MonoBehaviour
             Color.green
         );
 
-        if (Input.GetKeyDown(interactKey))
+        if (Input.GetMouseButtonDown(0))
         {
             TryInteract();
         }

@@ -49,6 +49,7 @@ public class AppManager : MonoBehaviour
         if (currentApp.name == "Message")
         {
             TextAdventure.instance.newMessageIcon.SetActive(false);
+            TextAdventure.instance.newMessageIconComputer.SetActive(false);
         }
     }
 

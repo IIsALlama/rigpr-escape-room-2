@@ -79,6 +79,7 @@ namespace SimpleTwineDialogue
         public static TextAdventure instance;
 
         public GameObject newMessageIcon;
+        public GameObject newMessageIconComputer;
 
         /// <summary>
         /// Initialize the text adventure and start loading the Twee file
@@ -110,7 +111,9 @@ namespace SimpleTwineDialogue
         {
             currentFile++;
             StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
+            AudioManager.instance.Play("Rat");
             newMessageIcon.SetActive(true);
+            newMessageIconComputer.SetActive(true);
         }
        
         /// <summary>
