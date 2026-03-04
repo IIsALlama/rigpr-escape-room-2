@@ -13873,9 +13873,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 060070c2332556a4eaaaae3c92a721cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RatSpawner
-  puzzleEnabled: 0
+  puzzleEnabled: 1
   ratPrefab: {fileID: 3953782176230284821, guid: ba1d1f659d4a0c347826d6dca0cebe9a, type: 3}
-  ratCount: 10
+  ratCount: 1000
   ratSpawnPoint: {fileID: 539557859}
   spawnDelayRange: {x: 3, y: 5}
   worldRefs: {fileID: 1466216266}

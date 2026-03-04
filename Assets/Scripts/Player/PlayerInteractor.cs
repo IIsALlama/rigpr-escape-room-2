@@ -30,7 +30,7 @@ public class PlayerInteractor : MonoBehaviour
             Color.green
         );
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             TryInteract();
         }
