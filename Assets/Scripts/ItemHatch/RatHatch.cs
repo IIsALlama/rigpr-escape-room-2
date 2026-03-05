@@ -18,7 +18,6 @@ public class RatHatch : MonoBehaviour
 
     [Header("Optional force")]
     [SerializeField] private bool useForce = true;
-    [SerializeField] private float force = 3f;
 
     [Header("Random Force")]
     [SerializeField] private Vector2 forceRange = new Vector2(2f, 5f);
@@ -28,15 +27,28 @@ public class RatHatch : MonoBehaviour
     [SerializeField] private int maxAlive = 3;
     private readonly List<HoldableItem> alive = new List<HoldableItem>();
 
+    [Header("Animator")]
+    [SerializeField] private Animator anim;
+
+    private bool pendingDispense;
+
     public void Dispense()
     {
         CleanupList();
 
-        Debug.Log($"[RatHatch] Dispense called. canSpawn={canSpawn} prefab={(itemPrefab ? itemPrefab.name : "NULL")} eject={(ejectPoint ? ejectPoint.name : "NULL")} alive={alive.Count}/{maxAlive}", this);
-
         if (!canSpawn) return;
         if (itemPrefab == null || ejectPoint == null) return;
         if (maxAlive > 0 && alive.Count >= maxAlive) return;
+
+        pendingDispense = true;
+        anim.SetTrigger("Dispense");
+    }
+
+    public void SpawnNow()
+    {
+        if (!pendingDispense) return;
+        if (!canSpawn) return;
+        pendingDispense = false;
 
         StartCoroutine(DispenseRoutine());
     }
@@ -90,8 +102,6 @@ public class RatHatch : MonoBehaviour
     private void CleanupList()
     {
         for (int i = alive.Count - 1; i >= 0; i--)
-        {
             if (alive[i] == null) alive.RemoveAt(i);
-        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PlayerInteractor : MonoBehaviour
 {
@@ -30,12 +31,26 @@ public class PlayerInteractor : MonoBehaviour
             Color.green
         );
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
+            if(EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) 
+                return; // Prevent interaction when clicking on UI
+
+            if (computerTerminal != null && computerTerminal.isOpen)
+                return;
+
             TryInteract();
         }
 
-        Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            if (computerTerminal != null && computerTerminal.isOpen)
+            {
+                computerTerminal.Close();
+            }
+        }
+
+            Ray ray = cam.ViewportPointToRay(new Vector3(0.5f, 0.5f, 0));
         if (!Physics.Raycast(ray, out RaycastHit hit, interactRange, interactLayer))
         {
             interactHelper.SetActive(false);

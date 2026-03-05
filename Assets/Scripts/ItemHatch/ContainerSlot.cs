@@ -13,6 +13,10 @@ public class ContainerSlot : MonoBehaviour
     public float ejectdelay;
     private Coroutine ejectRoutine;
 
+    [SerializeField] private CameraManager cameraManager;
+    [SerializeField] private int cameraIndexForThisHatch = -1;
+    [SerializeField] private int cctvAppId = 0;
+
     [Header("Force")]
     public float force;
     public bool useForce;
@@ -24,6 +28,10 @@ public class ContainerSlot : MonoBehaviour
     {
         ContainerManager.Instance.Register(this);
         routingApp = FindFirstObjectByType<RoutingApp>(FindObjectsInactive.Include);
+
+        if (cameraManager == null)      
+            cameraManager = FindFirstObjectByType<CameraManager>(FindObjectsInactive.Include);
+
 
     }
 
@@ -113,6 +121,12 @@ public class ContainerSlot : MonoBehaviour
         if (rb != null && useForce == true)
         {
             rb.AddForce(ejectPoint.transform.up * force, ForceMode.VelocityChange);
+        }
+
+        if (cameraIndexForThisHatch >= 0 && AppManager.instance != null && cameraManager != null)
+        {
+            AppManager.instance.OpenApp(cctvAppId);
+            cameraManager.SetCamera(cameraIndexForThisHatch);
         }
     }
 

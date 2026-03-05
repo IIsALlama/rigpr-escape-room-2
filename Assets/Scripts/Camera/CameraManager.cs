@@ -10,54 +10,76 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private RawImage textureView;
     [SerializeField] private TMP_Text camNumberText;
     [SerializeField] private TMP_Dropdown roomNumberDropdown;
-    private List<string> roomNumbers = new List<string>() { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "12", "13", "14", "15", "16", "17", "18" };
+
+    private List<string> roomNumbers = new List<string>()
+    { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "12", "13", "14", "15", "16", "17", "18" };
 
     private List<int> cameraLabels;
     private List<RenderTexture> renderTextures;
-    private int currentCamera = -1;
+
+    private int currentCamera = 0;
     public int CurrentCameraIndex => currentCamera;
 
     void Start()
     {
-        renderTextures = new List<RenderTexture>();
+        renderTextures = new List<RenderTexture>(cameras.Count);
         for (int i = 0; i < cameras.Count; i++)
         {
             RenderTexture tex = new RenderTexture(1280, 720, 0);
             renderTextures.Add(tex);
-            
             cameras[i].targetTexture = tex;
         }
 
-        cameraLabels = new List<int>();
+        roomNumberDropdown.ClearOptions();
         roomNumberDropdown.AddOptions(roomNumbers);
 
+        cameraLabels = new List<int>(cameras.Count);
+        for (int i = 0; i < cameras.Count; i++)
+            cameraLabels.Add(0);
+
         textureView.gameObject.SetActive(true);
-        ChangeCamera();
+        ApplyCamera(currentCamera);
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            ChangeCamera();
-        }
+        if (cameras == null || cameras.Count == 0) return;
+
+        if (Input.GetKeyDown(KeyCode.RightArrow))
+            StepCamera(+1);
+
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
+            StepCamera(-1);
     }
 
-    private void ChangeCamera()
+    private void StepCamera(int direction)
     {
-        currentCamera++;
-        if (currentCamera == cameras.Count){
-            currentCamera = 0;
-        }
+        currentCamera = (currentCamera + direction) % cameras.Count;
+        if (currentCamera < 0) currentCamera += cameras.Count;
 
-        textureView.texture = renderTextures[currentCamera];
-        camNumberText.text = "Camera " + (currentCamera + 1).ToString();
-        roomNumberDropdown.value = cameraLabels[currentCamera];
+        ApplyCamera(currentCamera);
+    }
+
+    private void ApplyCamera(int index)
+    {
+        textureView.texture = renderTextures[index];
+        camNumberText.text = "Camera " + (index + 1);
+
+        roomNumberDropdown.value = cameraLabels[index];
     }
 
     public void OnDropdownChange(TMP_Dropdown change)
     {
-        cameraLabels[currentCamera] = Convert.ToInt32(change.options[change.value].text);
+        cameraLabels[currentCamera] = change.value;
     }
 
+    public void SetCamera(int index)
+    {
+        if (cameras == null || cameras.Count == 0) return;
+
+        index = Mathf.Clamp(index, 0, cameras.Count - 1);
+        currentCamera = index;
+
+        ApplyCamera(currentCamera);
+    }
 }

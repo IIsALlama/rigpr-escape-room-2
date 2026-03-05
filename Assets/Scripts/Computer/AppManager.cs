@@ -67,6 +67,12 @@ public class AppManager : MonoBehaviour
 
         currentApp = null;
     }
+
+    public void OpenCCTVToCamera(int cameraIndex, CameraManager camManager, int cctvAppId)
+    {
+        OpenApp(cctvAppId);
+        camManager.SetCamera(cameraIndex);
+    }
 }
 
 [System.Serializable]
