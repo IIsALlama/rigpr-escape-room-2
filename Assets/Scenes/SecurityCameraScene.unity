@@ -7861,13 +7861,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 594342403}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000029802322, y: 0.75610304, z: 0.000000029802322, w: 0.6544526}
-  m_LocalPosition: {x: -0.0273, y: -0.0063, z: -0.0063}
+  m_LocalRotation: {x: -0.000000059604645, y: 0.80331576, z: -0.000000029802322, w: 0.5955534}
+  m_LocalPosition: {x: -0.027299995, y: -0.0063, z: -0.00538}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1158941777}
-  m_LocalEulerAnglesHint: {x: 0, y: 98.244, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 106.896, z: 0}
 --- !u!114 &594342405
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27561,6 +27561,14 @@ PrefabInstance:
       propertyPath: m_Mesh
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 983094046019895775, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0003
+      objectReference: {fileID: 0}
+    - target: {fileID: 983094046019895775, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0209
+      objectReference: {fileID: 0}
     - target: {fileID: 1264885033300655141, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -27581,6 +27589,34 @@ PrefabInstance:
       propertyPath: m_Range
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 2951
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3861845050421863599, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_Mesh
       value: 
@@ -27592,6 +27628,14 @@ PrefabInstance:
     - target: {fileID: 4218849233409826330, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862516921017273100, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0003
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862516921017273100, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0155
       objectReference: {fileID: 0}
     - target: {fileID: 5148218666669435858, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_Mesh
@@ -27650,12 +27694,72 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 2951
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_UseColorTemperature
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501502137811948579, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.0003
+      objectReference: {fileID: 0}
+    - target: {fileID: 7501502137811948579, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0155
       objectReference: {fileID: 0}
     - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_Range
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Lightmapping
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_ColorTemperature
+      value: 2951
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_UseColorTemperature
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8810855211579171918, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_Mesh
