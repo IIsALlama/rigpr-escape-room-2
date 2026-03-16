@@ -81,6 +81,9 @@ namespace SimpleTwineDialogue
         public GameObject newMessageIcon;
         public GameObject newMessageIconComputer;
 
+        public RatSpawner ratSpawner;
+        public CameraManager cameraManager;
+
         /// <summary>
         /// Initialize the text adventure and start loading the Twee file
         /// </summary>
@@ -114,6 +117,9 @@ namespace SimpleTwineDialogue
             AudioManager.instance.Play("Rat");
             newMessageIcon.SetActive(true);
             newMessageIconComputer.SetActive(true);
+            
+            ratSpawner.SetPuzzleEnabled(true);
+            cameraManager.ActivateRatPuzzleCamera();
         }
        
         /// <summary>

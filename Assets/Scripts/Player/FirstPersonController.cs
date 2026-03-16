@@ -85,38 +85,38 @@ public class FirstPersonController : MonoBehaviour
 
 
         // Mouse look
-        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
+        float mouseX = Input.GetAxis("Mouse X") * mouseSensitivity;
         targetRoll = Mathf.Clamp(-mouseX * turnSwayAmount, -turnSwayAmount, turnSwayAmount);
-        currentRoll = Mathf.Lerp(currentRoll, targetRoll, turnSwaySmoothing * Time.deltaTime);
+        currentRoll = -mouseX;//Mathf.Lerp(currentRoll, targetRoll, turnSwaySmoothing * Time.deltaTime);
 
-        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        float mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity;
 
         xRotation -= mouseY;
         xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
         transform.Rotate(Vector3.up * mouseX);
 
-        //Camera bobbing
-        bool doBob = isGrounded && actuallyMoving;
+        // //Camera bobbing
+        // bool doBob = isGrounded && actuallyMoving;
 
-        if (doBob)
-        {
-            bobTime += Time.deltaTime * bobFrequency;
+        // if (doBob)
+        // {
+        //     bobTime += Time.deltaTime * bobFrequency;
 
-            // sideways + up bob
-            float x = Mathf.Sin(bobTime) * bobAmount * 0.5f;
-            float y = Mathf.Abs(Mathf.Cos(bobTime)) * bobAmount;
+        //     // sideways + up bob
+        //     float x = Mathf.Sin(bobTime) * bobAmount * 0.5f;
+        //     float y = Mathf.Abs(Mathf.Cos(bobTime)) * bobAmount;
 
-            Vector3 bobOffset = new Vector3(x, y, 0f);
-            Vector3 targetPos = camBaseLocalPos + bobOffset;
+        //     Vector3 bobOffset = new Vector3(x, y, 0f);
+        //     Vector3 targetPos = camBaseLocalPos + bobOffset;
 
-            cameraPivot.localPosition = Vector3.Lerp(cameraPivot.localPosition, targetPos, bobSmoothing * Time.deltaTime);
-        }
-        else
-        {
-            bobTime = 0f;
-            cameraPivot.localPosition = Vector3.Lerp(cameraPivot.localPosition, camBaseLocalPos, bobSmoothing * Time.deltaTime);
-        }
+        //     cameraPivot.localPosition = Vector3.Lerp(cameraPivot.localPosition, targetPos, bobSmoothing * Time.deltaTime);
+        // }
+        // else
+        // {
+        //     bobTime = 0f;
+        //     cameraPivot.localPosition = Vector3.Lerp(cameraPivot.localPosition, camBaseLocalPos, bobSmoothing * Time.deltaTime);
+        // }
 
         // Apply roll (sway) without affecting pitch/yaw
         cameraPivot.localRotation = Quaternion.Euler(xRotation, 0f, currentRoll);

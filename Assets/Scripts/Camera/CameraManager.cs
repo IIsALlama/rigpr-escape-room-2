@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class CameraManager : MonoBehaviour
 {
     [SerializeField] private List<Camera> cameras;
+    [SerializeField] private Camera ratPuzzleCamera;
     [SerializeField] private RawImage textureView;
     [SerializeField] private TMP_Text camNumberText;
     [SerializeField] private TMP_Dropdown roomNumberDropdown;
@@ -22,7 +23,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        renderTextures = new List<RenderTexture>(cameras.Count);
+        renderTextures = new List<RenderTexture>(cameras.Count + 1);
         for (int i = 0; i < cameras.Count; i++)
         {
             RenderTexture tex = new RenderTexture(1280, 720, 0);
@@ -81,5 +82,10 @@ public class CameraManager : MonoBehaviour
         currentCamera = index;
 
         ApplyCamera(currentCamera);
+    }
+
+    public void ActivateRatPuzzleCamera()
+    {
+        cameras.Add(ratPuzzleCamera);
     }
 }
