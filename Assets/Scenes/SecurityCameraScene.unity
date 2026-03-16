@@ -231,7 +231,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -6180,7 +6180,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -7414,7 +7414,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -10675,7 +10675,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -22657,7 +22657,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 2
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -23050,7 +23050,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -25226,9 +25226,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 6188183876794067276}
     m_Modifications:
+    - target: {fileID: 1322392676116327987, guid: bcd84c38823d7ab4e8f2913c053a015c, type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1322392676116327987, guid: bcd84c38823d7ab4e8f2913c053a015c, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2997061629627381348, guid: bcd84c38823d7ab4e8f2913c053a015c, type: 3}
       propertyPath: m_Name
       value: lamp_2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4161144824474186076, guid: bcd84c38823d7ab4e8f2913c053a015c, type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4161144824474186076, guid: bcd84c38823d7ab4e8f2913c053a015c, type: 3}
+      propertyPath: m_Shadows.m_Type
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4286007585289909009, guid: bcd84c38823d7ab4e8f2913c053a015c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -25240,7 +25256,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4286007585289909009, guid: bcd84c38823d7ab4e8f2913c053a015c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 8.169522
+      value: 7.599
       objectReference: {fileID: 0}
     - target: {fileID: 4286007585289909009, guid: bcd84c38823d7ab4e8f2913c053a015c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -26230,7 +26246,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RenderingLayerMask: 1
-  m_Lightmapping: 4
+  m_Lightmapping: 1
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
   m_BounceIntensity: 1
@@ -32896,6 +32912,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 720058527232561622, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Lightmapping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 720058527232561622, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_ColorTemperature
       value: 2500
       objectReference: {fileID: 0}
@@ -33005,6 +33025,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Shadows.m_Type
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3158972331948986561, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
@@ -33165,6 +33189,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Shadows.m_Type
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7006092370018259840, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
@@ -33205,6 +33233,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
       propertyPath: m_Lightmapping
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
+      propertyPath: m_Shadows.m_Type
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8771032423509488889, guid: d0751478a760f284db3e79da7c3c5d13, type: 3}
