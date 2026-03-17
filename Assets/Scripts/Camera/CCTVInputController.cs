@@ -9,15 +9,23 @@ public class CCTVInputController : MonoBehaviour
     [Header("Rat puzzle hatch")]
     [SerializeField] private int ratPuzzleCameraIndex = 3; // 0-based
     [SerializeField] private RatHatch ratHatch;
+    [SerializeField] private RatSpawner ratSpawner;
     [SerializeField] private bool ratHatchUsesLeftClick = true;
 
     void Update()
     {
+        int camIndex = cameraManager.CurrentCameraIndex;
+        if (camIndex == ratPuzzleCameraIndex && cameraManager.ratCameraEnabled && ratSpawner.puzzleEnabled == false)
+        {
+            ratSpawner.SetPuzzleEnabled(true);
+        }
+
         if (cameraManager == null) { Debug.LogWarning("[CCTV] cameraManager NULL", this); return; }
         if (!Input.GetMouseButtonDown(0)) return;
 
-        int camIndex = cameraManager.CurrentCameraIndex;
+        
         Debug.Log($"[CCTV] Click camIndex={camIndex}", this);
+
 
         if (ratHatchUsesLeftClick && camIndex == ratPuzzleCameraIndex)
         {

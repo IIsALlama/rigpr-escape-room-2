@@ -11,6 +11,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private RawImage textureView;
     [SerializeField] private TMP_Text camNumberText;
     [SerializeField] private TMP_Dropdown roomNumberDropdown;
+    public bool ratCameraEnabled;
 
     private List<string> roomNumbers = new List<string>()
     { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "12", "13", "14", "15", "16", "17", "18" };
@@ -27,6 +28,7 @@ public class CameraManager : MonoBehaviour
         for (int i = 0; i < cameras.Count; i++)
         {
             RenderTexture tex = new RenderTexture(1280, 720, 0);
+            tex.depthStencilFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8_SRGB; 
             renderTextures.Add(tex);
             cameras[i].targetTexture = tex;
         }
@@ -35,7 +37,7 @@ public class CameraManager : MonoBehaviour
         roomNumberDropdown.AddOptions(roomNumbers);
 
         cameraLabels = new List<int>(cameras.Count + 1);
-        for (int i = 0; i < cameras.Count; i++)
+        for (int i = 0; i < cameras.Count + 1; i++)
             cameraLabels.Add(0);
 
         textureView.gameObject.SetActive(true);
@@ -90,5 +92,7 @@ public class CameraManager : MonoBehaviour
         RenderTexture tex = new RenderTexture(1280, 720, 0);
         renderTextures.Add(tex);
         ratPuzzleCamera.targetTexture = tex;
+
+        ratCameraEnabled = true;
     }
 }

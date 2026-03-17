@@ -4112,6 +4112,7 @@ MonoBehaviour:
   routingApp: {fileID: 1611363337}
   ratPuzzleCameraIndex: 4
   ratHatch: {fileID: 650058057}
+  ratSpawner: {fileID: 1466216265}
   ratHatchUsesLeftClick: 1
 --- !u!1 &324930919
 GameObject:

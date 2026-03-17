@@ -5,7 +5,8 @@ using System.Collections;
 public class RatSpawner : MonoBehaviour
 {
     [Header("Puzzle Toggle")]
-    [SerializeField] private bool puzzleEnabled = false;
+    [SerializeField] public bool puzzleEnabled = false;
+    [SerializeField] public bool ratPuzzleCanStart = false;
 
     [Header("Rat Spawn Settings")]
     [SerializeField] private GameObject ratPrefab;
@@ -58,6 +59,7 @@ public class RatSpawner : MonoBehaviour
         }
     }
 
-    public void SetPuzzleEnabled(bool enabled) => puzzleEnabled = enabled;
-
+    public void SetPuzzleEnabled(bool enabled) {
+        if (ratPuzzleCanStart) puzzleEnabled = enabled;
+    }
 }

@@ -12,6 +12,8 @@ public class AppManager : MonoBehaviour
     [SerializeField] private GameObject cctvCanvas;
     [SerializeField] private GameObject staticOverlay;
 
+    public bool completedHatchPuzzle = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -63,6 +65,11 @@ public class AppManager : MonoBehaviour
 
             apps[0].disabled = false;
             apps[2].disabled = false;
+
+            if (completedHatchPuzzle)
+            {
+                FindFirstObjectByType<RatSpawner>().ratPuzzleCanStart = true;
+            }
         }
     }
 
