@@ -20776,7 +20776,7 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     source: {fileID: 0}
   - name: Rat
-    clip: {fileID: 8300000, guid: 5cc1eb7f0b1310b40a61f9426765b5be, type: 3}
+    clip: {fileID: 8300000, guid: 81e2099a092a39f4593c07cf537d7c5a, type: 3}
     volume: 1
     pitch: 1
     loop: 0
