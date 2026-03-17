@@ -1,6 +1,7 @@
 using SimpleTwineDialogue;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AppManager : MonoBehaviour
 {
@@ -32,11 +33,20 @@ public class AppManager : MonoBehaviour
             CloseApp();
         }
 
+        for (int i = 0; i < apps.Count; i++)
+        {
+            apps[i].icon.color = apps[i].disabled ? new Color(0.2f, 0.2f, 0.2f) : Color.white;
+        }
     }
 
     public void OpenApp(int id)
     {
         CloseApp();
+
+        if (apps[id].disabled)
+        {
+            return;
+        }
 
         currentApp = apps[id];
         currentApp.appPanel.SetActive(true);
@@ -49,7 +59,10 @@ public class AppManager : MonoBehaviour
         if (currentApp.name == "Message")
         {
             TextAdventure.instance.newMessageIcon.SetActive(false);
-            TextAdventure.instance.newMessageIconComputer.SetActive(false);
+            //TextAdventure.instance.newMessageIconComputer.SetActive(false);
+
+            apps[0].disabled = false;
+            apps[2].disabled = false;
         }
     }
 
@@ -79,6 +92,9 @@ public class AppManager : MonoBehaviour
 public class App
 {
     public string name;
+    public Image icon; 
     public GameObject appPanel;
     public bool enablesCCTV;
+
+    public bool disabled;
 }

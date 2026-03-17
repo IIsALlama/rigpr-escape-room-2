@@ -23,7 +23,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        renderTextures = new List<RenderTexture>(cameras.Count + 1);
+        renderTextures = new List<RenderTexture>(cameras.Count);
         for (int i = 0; i < cameras.Count; i++)
         {
             RenderTexture tex = new RenderTexture(1280, 720, 0);
@@ -34,7 +34,7 @@ public class CameraManager : MonoBehaviour
         roomNumberDropdown.ClearOptions();
         roomNumberDropdown.AddOptions(roomNumbers);
 
-        cameraLabels = new List<int>(cameras.Count);
+        cameraLabels = new List<int>(cameras.Count + 1);
         for (int i = 0; i < cameras.Count; i++)
             cameraLabels.Add(0);
 
@@ -87,5 +87,8 @@ public class CameraManager : MonoBehaviour
     public void ActivateRatPuzzleCamera()
     {
         cameras.Add(ratPuzzleCamera);
+        RenderTexture tex = new RenderTexture(1280, 720, 0);
+        renderTextures.Add(tex);
+        ratPuzzleCamera.targetTexture = tex;
     }
 }

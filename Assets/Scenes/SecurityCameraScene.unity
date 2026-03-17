@@ -4110,7 +4110,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CCTVInputController
   cameraManager: {fileID: 304020706}
   routingApp: {fileID: 1611363337}
-  ratPuzzleCameraIndex: 3
+  ratPuzzleCameraIndex: 4
   ratHatch: {fileID: 650058057}
   ratHatchUsesLeftClick: 1
 --- !u!1 &324930919
@@ -25784,17 +25784,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::AppManager
   apps:
   - name: Security Cameras
+    icon: {fileID: 568646210}
     appPanel: {fileID: 304020702}
     enablesCCTV: 1
+    disabled: 1
   - name: Browser
+    icon: {fileID: 1896649816}
     appPanel: {fileID: 327789866}
     enablesCCTV: 0
+    disabled: 1
   - name: Routing
+    icon: {fileID: 915567860}
     appPanel: {fileID: 1611363336}
     enablesCCTV: 0
+    disabled: 1
   - name: Message
+    icon: {fileID: 1605561231}
     appPanel: {fileID: 1327972863}
     enablesCCTV: 0
+    disabled: 0
   cctvCanvas: {fileID: 586721949}
   staticOverlay: {fileID: 544210886}
 --- !u!1 &2143699544
