@@ -114,7 +114,6 @@ namespace SimpleTwineDialogue
         {
             currentFile++;
             StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
-            AudioManager.instance.Play("Rat");
             newMessageIcon.SetActive(true);
             newMessageIconComputer.SetActive(true);
             
