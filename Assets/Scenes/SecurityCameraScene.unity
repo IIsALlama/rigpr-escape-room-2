@@ -12762,7 +12762,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9084168598069644848, guid: 251a86b8dd191ce458ecf49233e9295b, type: 3}
   m_PrefabInstance: {fileID: 928618078}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1001 &936506152
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12841,8 +12840,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 492bc31094ea5a147932c8046cf6363b, type: 3}
   m_PrefabInstance: {fileID: 936506152}
   m_PrefabAsset: {fileID: 0}
-=======
->>>>>>> parent of 269dc5a (Lobby lighting + Windows)
 --- !u!1 &942320040
 GameObject:
   m_ObjectHideFlags: 0
@@ -14593,7 +14590,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
-<<<<<<< HEAD
 --- !u!1001 &1102933757
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -14668,8 +14664,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2150698860145486646, guid: 680a61d7ff09e0640949f9d87ba971a2, type: 3}
   m_PrefabInstance: {fileID: 1102933757}
   m_PrefabAsset: {fileID: 0}
-=======
->>>>>>> parent of 269dc5a (Lobby lighting + Windows)
 --- !u!1 &1105363419
 GameObject:
   m_ObjectHideFlags: 0
@@ -18034,7 +18028,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 588093541499148328, guid: b9de450bd6e154b4aa78d306cb181dfb, type: 3}
   m_PrefabInstance: {fileID: 1402176071}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &1420507689
 GameObject:
   m_ObjectHideFlags: 0
@@ -18147,8 +18140,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1420507689}
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
-=======
->>>>>>> parent of 269dc5a (Lobby lighting + Windows)
 --- !u!1001 &1428972022
 PrefabInstance:
   m_ObjectHideFlags: 0
