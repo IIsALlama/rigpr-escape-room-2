@@ -22,6 +22,7 @@ public class CameraManager : MonoBehaviour
     private int currentCamera = 0;
     public int CurrentCameraIndex => currentCamera;
 
+
     void Start()
     {
         renderTextures = new List<RenderTexture>(cameras.Count);

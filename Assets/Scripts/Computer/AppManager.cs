@@ -1,6 +1,7 @@
 using SimpleTwineDialogue;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
 public class AppManager : MonoBehaviour
@@ -17,6 +18,8 @@ public class AppManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        AudioManager.instance.Play("OS Start");
+
         if (instance == null)
         {
             instance = this;
@@ -39,6 +42,14 @@ public class AppManager : MonoBehaviour
         {
             apps[i].icon.color = apps[i].disabled ? new Color(0.2f, 0.2f, 0.2f) : Color.white;
         }
+
+        if (Input.GetMouseButtonDown(0))
+            if(Cursor.lockState == CursorLockMode.None && Cursor.visible == true)
+            {
+                AudioManager.instance.Play("Click");
+
+            }
+
     }
 
     public void OpenApp(int id)
@@ -71,10 +82,21 @@ public class AppManager : MonoBehaviour
                 FindFirstObjectByType<RatSpawner>().ratPuzzleCanStart = true;
             }
         }
+
+        if(currentApp.name == "Security Cameras")
+        {
+            AudioManager.instance.Play("Static");
+            AudioManager.instance.Play("LightHum");
+
+        }
     }
 
     public void CloseApp()
     {
+        AudioManager.instance.Stop("Static");
+        AudioManager.instance.Stop("LightHum");
+
+
         if (currentApp == null) return;
 
         currentApp.appPanel.SetActive(false);

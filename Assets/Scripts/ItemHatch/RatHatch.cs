@@ -35,6 +35,7 @@ public class RatHatch : MonoBehaviour
     public void Dispense()
     {
         CleanupList();
+        AudioManager.instance.Play("Hatch");
 
         if (!canSpawn) return;
         if (itemPrefab == null || ejectPoint == null) return;

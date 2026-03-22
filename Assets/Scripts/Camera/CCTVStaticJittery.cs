@@ -19,11 +19,12 @@ public class CCTVStaticJitteryUI : MonoBehaviour
     {
         img = GetComponent<RawImage>();
         img.uvRect = new Rect(0, 0, uvWindow, uvWindow);
+
+
     }
 
     void Update()
     {
-
 
 
 

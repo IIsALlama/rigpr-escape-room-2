@@ -6410,7 +6410,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1549985217517192982, guid: e922d3f82ab0ea64c9423588bfc0569b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0355
+      value: 0.0155
       objectReference: {fileID: 0}
     - target: {fileID: 1549985217517192982, guid: e922d3f82ab0ea64c9423588bfc0569b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -12218,7 +12218,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1362774170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15365,6 +15365,54 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Rat
     clip: {fileID: 8300000, guid: 81e2099a092a39f4593c07cf537d7c5a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    is3D: 0
+    position: {x: 0, y: 0, z: 0}
+    source: {fileID: 0}
+  - name: Static
+    clip: {fileID: 8300000, guid: e37ac45f3c6a87d46850126c2eebd4e6, type: 3}
+    volume: 0.133
+    pitch: 1
+    loop: 1
+    is3D: 0
+    position: {x: 0, y: 0, z: 0}
+    source: {fileID: 0}
+  - name: LightHum
+    clip: {fileID: 8300000, guid: b23a8d99636f061428fc797fec89fc34, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 1
+    is3D: 0
+    position: {x: 0, y: 0, z: 0}
+    source: {fileID: 0}
+  - name: Hatch
+    clip: {fileID: 8300000, guid: 4b5dc799afeed1f4d80636cd4077260f, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    is3D: 0
+    position: {x: 0, y: 0, z: 0}
+    source: {fileID: 0}
+  - name: HatchSend
+    clip: {fileID: 8300000, guid: c6e3c98acef340c4495116d9ccb4f854, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    is3D: 0
+    position: {x: 0, y: 0, z: 0}
+    source: {fileID: 0}
+  - name: Click
+    clip: {fileID: 8300000, guid: c74ce81dcf5321b4296fc064c56b5ac0, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    is3D: 0
+    position: {x: 0, y: 0, z: 0}
+    source: {fileID: 0}
+  - name: OS Start
+    clip: {fileID: 8300000, guid: 16bb54d61b0164142b38778d835a1b1d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
