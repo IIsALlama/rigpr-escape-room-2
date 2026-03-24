@@ -117,7 +117,7 @@ namespace SimpleTwineDialogue
             newMessageIcon.SetActive(true);
             //newMessageIconComputer.SetActive(true);
             
-            //ratSpawner.SetPuzzleEnabled(true);
+            ratSpawner.SetPuzzleEnabled(true);
             cameraManager.ActivateRatPuzzleCamera();
         }
        

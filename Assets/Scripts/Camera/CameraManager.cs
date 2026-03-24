@@ -11,6 +11,7 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private RawImage textureView;
     [SerializeField] private TMP_Text camNumberText;
     [SerializeField] private TMP_Dropdown roomNumberDropdown;
+    [SerializeField] private GameObject ratButtonEnabled;
     public bool ratCameraEnabled;
 
     private List<string> roomNumbers = new List<string>()
@@ -25,6 +26,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
+
         renderTextures = new List<RenderTexture>(cameras.Count);
         for (int i = 0; i < cameras.Count; i++)
         {
@@ -54,6 +56,10 @@ public class CameraManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             StepCamera(-1);
+
+        if (ratCameraEnabled == false)
+            ratButtonEnabled.SetActive(false);
+
     }
 
     private void StepCamera(int direction)
@@ -95,5 +101,6 @@ public class CameraManager : MonoBehaviour
         ratPuzzleCamera.targetTexture = tex;
 
         ratCameraEnabled = true;
+        ratButtonEnabled.SetActive(true);   
     }
 }
