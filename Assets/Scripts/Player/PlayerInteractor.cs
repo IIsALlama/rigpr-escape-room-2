@@ -15,6 +15,8 @@ public class PlayerInteractor : MonoBehaviour
     private Camera cam;
     private PlayerItemHolder itemHolder;
 
+    [SerializeField] private StaticScam staticScam;
+
     void Awake()
     {
         cam = Camera.main;
@@ -122,6 +124,7 @@ public class PlayerInteractor : MonoBehaviour
         else if(computer != null && computer.isOpen == true)
         {
             computer.Close();
+
             return;
         }
 
@@ -132,10 +135,10 @@ public class PlayerInteractor : MonoBehaviour
             blueprint.Open();
             return;
         }
-        else if (blueprint != null && blueprint.isOpen == true)
+/*        else if (blueprint != null && blueprint.isOpen == true)
         {
             blueprint.Close();
             return;
-        }
+        }*/
     }
 }

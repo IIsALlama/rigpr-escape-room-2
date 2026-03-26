@@ -1,0 +1,62 @@
+:: StoryTitle
+Puzzle 2 Script
+
+
+:: StoryData
+{
+  "ifid": "73B9C059-529F-4638-9393-AF32B73AD54B",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Introduction to Puzzle 2 Script",
+  "zoom": 1
+}
+
+
+:: I can't leave the room {"position":"862.5,625","size":"100,100"}
+Oh yes, that’s a good point. OK, fine, I suppose you can operate everything from the room you are in. I’ll send over the security footage, see if you can scare them and stop them from getting into the main hotel
+
+If you mess this up, it will not look good on your resume!
+
+
+:: I don't want to get infected {"position":"737.5,625","size":"100,100"}
+Well why not? Nothing wrong with getting your hands dirty and your body infected with the Black Death. Like my father always used to say, you aren’t a real man/woman/person/thing until you’ve had at least three fatal diseases!
+
+[[It's unsafe!]]
+
+
+:: Start {"position":"800,375","size":"100,100"}
+Greetings, dear fellow. I suppose you didn’t do too badly at your first task, all things considered.
+
+Do you think that went well?
+
+[[Yes]]
+[[Yes ]]
+
+
+
+:: It's unsafe! {"position":"737.5,750","size":"100,100"}
+OK, fine, I suppose you can operate everything from the room you are in. I’ll send over the security footage, see if you can scare them and stop them from getting into the main hotel
+
+If you mess this up, it will not look good on your resume!
+
+
+:: Yes {"position":"737.5,500","size":"100,100"}
+Jolly good, jolly good!
+
+Now, your next task. Despite our state-of-the-art rat jail that has been doing such a good job holding them until now, they’ve still managed to find a way to slip out. I was so sure it would hold them, we even locked the door on that cupboard.
+
+Usually, I would deal with such matters myself, but sometimes more important tasks come up. After all, if I don’t finish up writing my novel, who will? So I guess it’s up to you, Steve. Head up to the room and deal with the rats in whatever way you deem necessary!
+
+[[I don't want to get infected]]
+[[I can't leave the room]]
+
+
+:: Yes\  {"position":"862.5,500","size":"100,100"}
+Splendid!
+
+Now, your next task. Despite our state-of-the-art rat jail that has been doing such a good job holding them until now, they’ve still managed to find a way to slip out. I was so sure it would hold them, we even locked the door on that cupboard.
+
+Usually, I would deal with such matters myself, but sometimes more important tasks come up. After all, if I don’t finish up writing my novel, who will? So I guess it’s up to you, Steve. Head up to the room and deal with the rats in whatever way you deem necessary!
+
+[[I don't want to get infected]]
+[[I can't leave the room]]

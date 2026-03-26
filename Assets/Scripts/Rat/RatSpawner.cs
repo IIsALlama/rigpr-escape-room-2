@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using SimpleTwineDialogue;
 
 
 public class RatSpawner : MonoBehaviour
@@ -18,8 +19,10 @@ public class RatSpawner : MonoBehaviour
 
     [Header("Rat Score")]
     public int currentScore = 0;
-    public int winScore = 5;
+    public int winScore = 1;
     public int scorePerRat = 1;
+
+    [SerializeField] private TextAdventure textAdventure;
 
     private void Update()
     {
@@ -35,6 +38,8 @@ public class RatSpawner : MonoBehaviour
             puzzleEnabled = false;
             StopSpawning();
             // Additional win logic here
+
+            textAdventure.NextFile();
         }
 
     }

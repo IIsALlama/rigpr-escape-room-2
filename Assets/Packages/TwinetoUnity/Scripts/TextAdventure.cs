@@ -103,6 +103,9 @@ namespace SimpleTwineDialogue
         // if still want the old single text field visible
         public bool alsoUpdateSinglePassageText = false;
 
+
+        public GameObject endScreen;
+
         /// <summary>
         /// Initialize the text adventure and start loading the Twee file
         /// </summary>
@@ -131,14 +134,14 @@ namespace SimpleTwineDialogue
         [ContextMenu("Next file")]
         public void NextFile()
         {
+
             currentFile++;
             StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
             newMessageIcon.SetActive(true);
             //newMessageIconComputer.SetActive(true);
 
-            ratSpawner.SetPuzzleEnabled(true);
             //cameraManager.ActivateRatPuzzleCamera();
-            Debug.Log("Next file loaded, rat puzzle enabled, camera switched");
+            Debug.Log("Next file loaded");
         }
 
         /// <summary>
@@ -308,13 +311,19 @@ namespace SimpleTwineDialogue
             bool noChoices = passage.ParsedChoices == null || passage.ParsedChoices.Count == 0;
             bool isLastFile = localFileNames != null && localFileNames.Length > 0 && currentFile == localFileNames.Length - 1;
 
-            if (!activatedAtStoryEnd && isLastFile && noChoices)
+            if (currentFile == 1 && noChoices)
             {
-                activatedAtStoryEnd = true;
-                Debug.Log("End of last file reached -> activating rat puzzle camera");
+                Debug.Log("End of 2nd file reached -> activating rat puzzle camera");
 
                 if (ratSpawner != null) ratSpawner.SetPuzzleEnabled(true);
                 if (cameraManager != null) cameraManager.ActivateRatPuzzleCamera();
+            }
+
+            if (currentFile == 2 && noChoices)
+            {
+                Debug.Log("Ended file 3");
+
+                endScreen.SetActive(true);
             }
 
             // If you still want the old field updated too, toggle alsoUpdateSinglePassageText

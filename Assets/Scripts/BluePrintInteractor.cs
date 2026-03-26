@@ -20,6 +20,15 @@ public class BluePrintInteractor : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Close();
+        }
+    }
+
+
     public void Close()
     {
         if (isOpen)

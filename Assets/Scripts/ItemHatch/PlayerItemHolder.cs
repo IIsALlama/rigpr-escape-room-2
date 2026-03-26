@@ -4,6 +4,8 @@ public class PlayerItemHolder : MonoBehaviour
 {
     public Transform holdPoint;
     public HoldableItem heldItem;
+    public ItemType itemType;
+
 
     public void PickUpItem(HoldableItem item)
     {

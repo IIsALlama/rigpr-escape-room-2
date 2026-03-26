@@ -1,9 +1,11 @@
+using SimpleTwineDialogue;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RestartGame : MonoBehaviour
 {
     [SerializeField] private Canvas menu;
+
 
     private void Awake()
     {

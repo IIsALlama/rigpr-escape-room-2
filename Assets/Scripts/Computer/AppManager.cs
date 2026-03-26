@@ -13,6 +13,8 @@ public class AppManager : MonoBehaviour
     [SerializeField] private GameObject cctvCanvas;
     [SerializeField] private GameObject staticOverlay;
 
+    [SerializeField] private StaticScam staticScam;
+
     public bool completedHatchPuzzle = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +37,7 @@ public class AppManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            staticScam.isStatic = false;
             CloseApp();
         }
 
@@ -64,10 +67,7 @@ public class AppManager : MonoBehaviour
         currentApp = apps[id];
         currentApp.appPanel.SetActive(true);
 
-        if (cctvCanvas != null)
-            cctvCanvas.SetActive(currentApp.enablesCCTV);
-        if (staticOverlay != null)
-            staticOverlay.SetActive(currentApp.enablesCCTV);
+
 
         if (currentApp.name == "Message")
         {
@@ -83,31 +83,24 @@ public class AppManager : MonoBehaviour
             }
         }
 
-        if(currentApp.name == "Security Cameras")
-        {
-            AudioManager.instance.Play("Static");
-            AudioManager.instance.Play("LightHum");
 
-        }
+
     }
 
     public void CloseApp()
     {
-        AudioManager.instance.Stop("Static");
-        AudioManager.instance.Stop("LightHum");
+
 
 
         if (currentApp == null) return;
 
         currentApp.appPanel.SetActive(false);
 
-        if (cctvCanvas != null)
-            cctvCanvas.SetActive(false);
-        if (staticOverlay != null)
-            staticOverlay.SetActive(false);
+
 
 
         currentApp = null;
+
     }
 
     public void OpenCCTVToCamera(int cameraIndex, CameraManager camManager, int cctvAppId)
