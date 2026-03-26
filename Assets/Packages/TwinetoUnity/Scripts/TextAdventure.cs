@@ -34,16 +34,16 @@ namespace SimpleTwineDialogue
         [Header("UI Components")]
         // Text component to display passage content
         public TextMeshProUGUI passageText;
-        
+
         // Prefab for choice buttons that will be instantiated
         public Button choiceButtonPrefab;
-        
+
         // Container where choice buttons will be spawned
         public Transform choiceButtonContainer;
-        
+
         // Container where images will be displayed
         public Transform imageContainer;
-        
+
         // Prefab for images that will be instantiated
         public Image imagePrefab;
 
@@ -58,21 +58,27 @@ namespace SimpleTwineDialogue
         [Header("Load from Web")]
         // URL to the Twee file hosted on a web server
         public string webFileURL;
-        
+
         // Base URL where images are hosted (images will be loaded from imageBaseURL/imageName)
         public string imageBaseURL;
-        
+
         [Header("Load from Local")]
         // Filename of the Twee file in the StreamingAssets folder
         public string[] localFileNames;
         private int currentFile = 0;
 
+        [Header("Triggers")]
+        public bool unlockRatOnNoChoices = true;
+        private bool ratUnlocked = false;
+
+        private bool activatedAtStoryEnd = false;
+
         // Parser instance for reading Twee files
         private TweeParser tweeParser;
-        
+
         // Dictionary storing all passages from the Twee file
         private Dictionary<string, TweeParser.Passage> passages;
-        
+
         // Title of the currently displayed passage
         private string currentPassageTitle;
 
@@ -83,6 +89,19 @@ namespace SimpleTwineDialogue
 
         public RatSpawner ratSpawner;
         public CameraManager cameraManager;
+
+        [Header("Chat / Scroll View")]
+        public ScrollRect chatScrollRect;          // the scroll rect
+        public RectTransform chatContent;          // Content under Viewport
+        public GameObject chatMessagePrefab;       // prefab with TMP text inside
+        public bool autoScrollToBottom = true;
+        public int maxMessages = 300;
+
+        public GameObject npcMessagePrefab;
+        public GameObject playerMessagePrefab;
+
+        // if still want the old single text field visible
+        public bool alsoUpdateSinglePassageText = false;
 
         /// <summary>
         /// Initialize the text adventure and start loading the Twee file
@@ -101,9 +120,9 @@ namespace SimpleTwineDialogue
         void Start()
         {
             tweeParser = new TweeParser();
-            if(loadFromWeb){
+            if (loadFromWeb) {
                 StartCoroutine(LoadTweeFile(webFileURL));
-                
+
             } else {
                 StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
             }
@@ -116,19 +135,24 @@ namespace SimpleTwineDialogue
             StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
             newMessageIcon.SetActive(true);
             //newMessageIconComputer.SetActive(true);
-            
-            //ratSpawner.SetPuzzleEnabled(true);
-            cameraManager.ActivateRatPuzzleCamera();
+
+            ratSpawner.SetPuzzleEnabled(true);
+            //cameraManager.ActivateRatPuzzleCamera();
+            Debug.Log("Next file loaded, rat puzzle enabled, camera switched");
         }
-       
+
         /// <summary>
         /// Called when a choice button is clicked
         /// </summary>
         /// <param name="choiceTitle">The target passage to navigate to</param>
         /// <param name="currentPassageText">The text of the current passage</param>
-        void OnChoiceSelected(string choiceTitle, string currentPassageText)
+        void OnChoiceSelected(string choiceTitle, string currentPassageText, string choiceText)
         {
+            // Add the clicked choice as a "player message"
+            AddChatMessage(choiceText, fromPlayer: true);
+
             DisplayPassage(choiceTitle);
+
             myChoices += 1;
             myChoiceCounterUI.text = "Choices made: " + myChoices.ToString();
         }
@@ -155,7 +179,7 @@ namespace SimpleTwineDialogue
                 {
                     string text = request.downloadHandler.text;
                     passages = tweeParser.ParseTweeFileFromText(text);
-                    
+
                     CheckForStartPassage();
                 }
             } else {
@@ -164,7 +188,7 @@ namespace SimpleTwineDialogue
                 {
                     string text = File.ReadAllText(filePath, Encoding.UTF8);
                     passages = tweeParser.ParseTweeFileFromText(text);
-                    
+
                     CheckForStartPassage();
 
                     yield break; // Exit the coroutine since we're using local file loading
@@ -268,26 +292,47 @@ namespace SimpleTwineDialogue
                 Debug.LogError("Passage not found: " + passageTitle);
                 return;
             }
-            
+
             // Clear previous content
             ClearChoices();
             ClearImages();
 
             // Display passage text
             currentPassageTitle = passageTitle;
-            passageText.text = passage.Body;
+
+            // Add passage as an "NPC message"
+            AddChatMessage(passage.Body, fromPlayer: false);
+
+
+
+            bool noChoices = passage.ParsedChoices == null || passage.ParsedChoices.Count == 0;
+            bool isLastFile = localFileNames != null && localFileNames.Length > 0 && currentFile == localFileNames.Length - 1;
+
+            if (!activatedAtStoryEnd && isLastFile && noChoices)
+            {
+                activatedAtStoryEnd = true;
+                Debug.Log("End of last file reached -> activating rat puzzle camera");
+
+                if (ratSpawner != null) ratSpawner.SetPuzzleEnabled(true);
+                if (cameraManager != null) cameraManager.ActivateRatPuzzleCamera();
+            }
+
+            // If you still want the old field updated too, toggle alsoUpdateSinglePassageText
+            if (alsoUpdateSinglePassageText && passageText != null)
+                passageText.text = passage.Body;
 
             // Create choice buttons using ParsedChoices (handles all link formats automatically)
             foreach (var choice in passage.ParsedChoices)
             {
                 var choiceButton = Instantiate(choiceButtonPrefab, choiceButtonContainer);
-                
+
                 // Display the choice text on the button
                 choiceButton.GetComponentInChildren<TextMeshProUGUI>().text = choice.Text;
-                
+
                 // When clicked, navigate to the target passage
-                string targetPassage = choice.Target; // Capture for lambda
-                choiceButton.onClick.AddListener(() => OnChoiceSelected(targetPassage, passage.Body));
+                string targetPassage = choice.Target;
+                string choiceText = choice.Text;
+                choiceButton.onClick.AddListener(() => OnChoiceSelected(targetPassage, passage.Body, choiceText));
             }
 
             // Load and display images
@@ -300,40 +345,40 @@ namespace SimpleTwineDialogue
         /// <summary>
         /// Check if a "Start" passage exists and display it, or show helpful error messages
         /// </summary>
-        void CheckForStartPassage(){
-                if (passages.ContainsKey("Start"))
+        void CheckForStartPassage() {
+            if (passages.ContainsKey("Start"))
+            {
+                Debug.Log("Passage 'Start' found.");
+                DisplayPassage("Start");  // Display the initial passage
+            }
+            else
+            {
+                // Show detailed error message with troubleshooting steps
+                Debug.LogError("Passage 'Start' not found.");
+                Debug.LogError("");
+                Debug.LogError("=== HOW TO FIX ===");
+                Debug.LogError("1. Make sure your Twee file has a passage named 'Start' (case-sensitive)");
+                Debug.LogError("2. Check the StoryData section - the 'start' field should be set to 'Start'");
+                Debug.LogError("3. Verify your Twee file format:");
+                Debug.LogError("   :: Start {\"position\":\"400,100\",\"size\":\"100,100\"}");
+                Debug.LogError("   Your story text here...");
+                Debug.LogError("   [[Choice text|Target passage]]");
+                Debug.LogError("");
+                Debug.LogError("Available passages found in file:");
+
+                if (passages.Count == 0)
                 {
-                    Debug.Log("Passage 'Start' found.");
-                    DisplayPassage("Start");  // Display the initial passage
+                    Debug.LogError("   (No passages found - check if file was loaded correctly)");
                 }
                 else
                 {
-                    // Show detailed error message with troubleshooting steps
-                    Debug.LogError("Passage 'Start' not found.");
-                    Debug.LogError("");
-                    Debug.LogError("=== HOW TO FIX ===");
-                    Debug.LogError("1. Make sure your Twee file has a passage named 'Start' (case-sensitive)");
-                    Debug.LogError("2. Check the StoryData section - the 'start' field should be set to 'Start'");
-                    Debug.LogError("3. Verify your Twee file format:");
-                    Debug.LogError("   :: Start {\"position\":\"400,100\",\"size\":\"100,100\"}");
-                    Debug.LogError("   Your story text here...");
-                    Debug.LogError("   [[Choice text|Target passage]]");
-                    Debug.LogError("");
-                    Debug.LogError("Available passages found in file:");
-                    
-                    if (passages.Count == 0)
+                    // List all available passages to help debugging
+                    foreach (var passageTitle in passages.Keys)
                     {
-                        Debug.LogError("   (No passages found - check if file was loaded correctly)");
-                    }
-                    else
-                    {
-                        // List all available passages to help debugging
-                        foreach (var passageTitle in passages.Keys)
-                        {
-                            Debug.LogError($"   - {passageTitle}");
-                        }
+                        Debug.LogError($"   - {passageTitle}");
                     }
                 }
+            }
         }
 
         // Clear out the button choices to make room for the new ones.
@@ -355,5 +400,41 @@ namespace SimpleTwineDialogue
             }
         }
 
+        void AddChatMessage(string text, bool fromPlayer)
+        {
+            var prefab = fromPlayer ? playerMessagePrefab : npcMessagePrefab;
+            var go = Instantiate(prefab, chatContent);
+
+            var tmp = go.GetComponentInChildren<TextMeshProUGUI>(true);
+            if (tmp != null) tmp.text = text;
+
+            if (autoScrollToBottom && chatScrollRect != null)
+                StartCoroutine(ScrollToBottomNextFrame());
+        }
+
+        IEnumerator ScrollToBottomNextFrame()
+        {
+            yield return null; // wait for layout rebuild
+            Canvas.ForceUpdateCanvases();
+            chatScrollRect.verticalNormalizedPosition = 0f; // bottom
+            Canvas.ForceUpdateCanvases();
+        }
+
+
+        public void UnlockRatPuzzleNow()
+        {
+            Debug.Log("UnlockRatPuzzleNow() CALLED"); // <--- add this
+
+            if (ratUnlocked) return;
+            ratUnlocked = true;
+
+            Debug.Log("UnlockRatPuzzleNow -> unlocking rat puzzle + camera");
+
+            if (ratSpawner != null) ratSpawner.SetPuzzleEnabled(true);
+            else Debug.LogError("ratSpawner missing");
+
+            if (cameraManager != null) cameraManager.ActivateRatPuzzleCamera();
+            else Debug.LogError("cameraManager missing");
+        }
     }
 }

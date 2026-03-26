@@ -16,12 +16,25 @@ public class RatSpawner : MonoBehaviour
     [SerializeField] private RatWorldRefs worldRefs;
     private Coroutine spawnRoutine;
 
+    [Header("Rat Score")]
+    public int currentScore = 0;
+    public int winScore = 5;
+    public int scorePerRat = 1;
+
     private void Update()
     {
         if (puzzleEnabled && spawnRoutine == null)
         {
 
             StartSpawning();
+        }
+
+        if (currentScore >= winScore)
+        {
+            Debug.Log("Rat puzzle completed!");
+            puzzleEnabled = false;
+            StopSpawning();
+            // Additional win logic here
         }
 
     }
@@ -61,5 +74,10 @@ public class RatSpawner : MonoBehaviour
 
     public void SetPuzzleEnabled(bool enabled) {
         if (ratPuzzleCanStart) puzzleEnabled = enabled;
+    }
+
+    public void AddScore() 
+    {
+        currentScore += scorePerRat;
     }
 }

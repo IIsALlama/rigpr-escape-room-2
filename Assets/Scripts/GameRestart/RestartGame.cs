@@ -30,4 +30,10 @@ public class RestartGame : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+
+    public void OnApplicationQuit()
+    {
+        Application.Quit();
+
+    }
 }

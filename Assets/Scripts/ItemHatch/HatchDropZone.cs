@@ -28,6 +28,7 @@ public class HatchDropZone : MonoBehaviour
                 case ItemType.Food:
                     TextAdventure.instance.NextFile();
                     FindFirstObjectByType<AppManager>().completedHatchPuzzle = true;
+                    //TextAdventure.instance.UnlockRatPuzzleNow();
                     // Handle food item logic
                     break;
                 case ItemType.Can:
