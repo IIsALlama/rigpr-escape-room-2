@@ -136,6 +136,7 @@ namespace SimpleTwineDialogue
         {
 
             currentFile++;
+            Debug.Log(currentFile);
             StartCoroutine(LoadTweeFile(Path.Combine(Application.streamingAssetsPath, localFileNames[currentFile])));
             newMessageIcon.SetActive(true);
             //newMessageIconComputer.SetActive(true);

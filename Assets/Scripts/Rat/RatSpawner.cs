@@ -24,6 +24,8 @@ public class RatSpawner : MonoBehaviour
 
     [SerializeField] private TextAdventure textAdventure;
 
+    bool stopped = false;
+
     private void Update()
     {
         if (puzzleEnabled && spawnRoutine == null)
@@ -32,7 +34,7 @@ public class RatSpawner : MonoBehaviour
             StartSpawning();
         }
 
-        if (currentScore >= winScore)
+        if (currentScore >= winScore && !stopped)
         {
             Debug.Log("Rat puzzle completed!");
             puzzleEnabled = false;
@@ -40,6 +42,8 @@ public class RatSpawner : MonoBehaviour
             // Additional win logic here
 
             textAdventure.NextFile();
+
+            stopped = true;
         }
 
     }

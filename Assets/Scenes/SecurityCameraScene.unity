@@ -5013,7 +5013,7 @@ MonoBehaviour:
   localFileNames:
   - Puzzle1ScriptNew.twee
   - Puzzle2Script.twee
-  - Puzzle2Script.twee
+  - EndingScript.twee
   unlockRatOnNoChoices: 1
   newMessageIcon: {fileID: 37327165}
   newMessageIconComputer: {fileID: 0}

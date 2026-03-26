@@ -1,0 +1,103 @@
+:: StoryTitle
+Ending without Epilogue
+
+
+:: StoryData
+{
+  "ifid": "55941AB9-2C69-4419-A5E3-931FE2B49E1B",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Untitled Passage",
+  "zoom": 1
+}
+
+
+:: "Good?" {"position":"862.5,500","size":"100,100"}
+Marvellous!
+
+Now, your next task. Now that you've got the hang of the system, I need you to take it to the next level. Earlier this morning, I was trying to attach a keyring of an alpaca to the chute system. This was a genius idea, but events that were definitely outside my control have conspired it to fall into the hatch.
+
+[["Why would you do that?"]]
+
+
+:: "How much are you taking out of my pay, exactly?" {"position":"812.5,1250","size":"100,100"}
+Let's not worry about the details, you'll get your pay and I'll get my funds for the side business, so there you go.
+
+[[End Game]]
+
+
+
+:: "I already completed two tasks for you" {"position":"687.5,1125","size":"100,100"}
+Oh, so you did. *sigh*... In that case, I'll give you the money. But I have a little side business going on, so I'm going to need to keep a lot of it for that.
+
+[["That's, uh... fine?"]]
+[["How much are you taking out of my pay, exactly?"]]
+
+
+
+:: "I still can't fit, though." {"position":"750,1000","size":"100,100"}
+Alright, alright, I'll hear you out, but you're going to have to make a really strong argument if you seriously want me to pay you.
+
+[["I already completed two tasks for you"]]
+[["I would like severance pay."]]
+
+
+
+:: "I won't fit inside the hatch." {"position":"750,750","size":"100,100"}
+I mean, you can do whatever you want really, I'm not going to force you. If you'd rather not have money, I'm not going to stop you. It’s the way the world works, you know.
+
+[["I would like to be paid."]]
+
+
+
+:: "I would like severance pay." {"position":"812.5,1125","size":"100,100"}
+Why would I give you severance pay? You're not getting fired, you're quitting.
+
+[["I already completed two tasks for you"]] 
+
+
+
+:: "I would like to be paid." {"position":"750,875","size":"100,100"}
+Wonderful! I expect to see my alpaca keyring by teatime.
+
+[["I still can't fit, though."]]
+
+
+
+:: "That's, uh... fine?" {"position":"687.5,1250","size":"100,100"}
+Good, off you go then. The payslip should be sent down shortly.
+
+[[End Game]]
+
+
+
+:: "Uh..." {"position":"737.5,500","size":"100,100"}
+Marvellous!
+
+Now, your next task. Now that you've got the hang of the system, I need you to take it to the next level. Earlier this morning, I was trying to attach a keyring of an alpaca to the chute system. This was a genius idea, but events that were definitely outside my control have conspired it to fall into the hatch.
+
+[["Why would you do that?"]]
+
+
+
+:: "Why would you do that?" {"position":"737.5,625","size":"100,100"}
+Why not? It looks good, doesn't it?
+
+Anyway, I checked all the rooms earlier, and the keyring seems to have gotten stuck to the side of the chute. So, Steve Stevington, my trusted Happiness Supervisor, can you find the strength to crawl inside the chute and get the keyring?
+
+[["I won't fit inside the hatch."]]
+
+
+
+:: End Game {"position":"687.5,1375","size":"100,100"}
+
+
+
+:: Start {"position":"800,375","size":"100,100"}
+Oh, it's you. 
+
+How are things on your end, chum?
+
+[["Uh..."]]
+[["Good?"]]
+

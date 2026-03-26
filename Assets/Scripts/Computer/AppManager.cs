@@ -43,7 +43,7 @@ public class AppManager : MonoBehaviour
 
         for (int i = 0; i < apps.Count; i++)
         {
-            apps[i].icon.color = apps[i].disabled ? new Color(0.2f, 0.2f, 0.2f) : Color.white;
+            //apps[i].icon.color = apps[i].disabled ? new Color(0.2f, 0.2f, 0.2f) : Color.white;
         }
 
         if (Input.GetMouseButtonDown(0))
