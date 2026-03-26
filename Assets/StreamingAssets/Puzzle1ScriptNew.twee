@@ -1,0 +1,166 @@
+:: StoryTitle
+Puzzle 1 Script Updated
+
+
+:: StoryData
+{
+  "ifid": "8C819E59-4E7D-4FA1-8859-E18D94CE7587",
+  "format": "Harlowe",
+  "format-version": "3.3.9",
+  "start": "Automated Message",
+  "zoom": 1
+}
+
+
+:: "Adam" {"position":"800,750","size":"100,100"}
+Adam, eh? Well, for all intensive purposes, let's call you Steve from here on.
+
+[["Alright"]]
+[["Why?"]]
+
+
+:: "Alright" {"position":"925,875","size":"100,100"}
+Glad to see we're on the same page.
+
+Now then, let's discuss your role here with us at our fine establishment. We would like you to fill the role of the "Happiness Supervisor", as it were.
+
+[["Happiness Supervisor?"]]
+
+
+:: "Bob" {"position":"925,750","size":"100,100"}
+Bob, eh? Well, for all intensive purposes, let's call you Steve from here on.
+
+[["Alright"]] 
+[["Why?"]] 
+
+
+:: "Chute system?" {"position":"800,1375","size":"100,100"}
+Oh yes, marvellous invention, that. It transports from one room to another in the blink of an eye. Makes giving items to guests much more efficient. To use it, simply place an item inside, and then select a chute on this computer. Any questions?
+
+[["Yes"]]
+[["No"]]
+[["How much am I getting paid?"]]
+
+
+:: "Derek" {"position":"675,750","size":"100,100"}
+Derek, eh? Well, for all intensive purposes, let's call you Steve from here on.
+
+[["Alright"]] 
+[["Why?"]] 
+
+
+:: "Happiness Supervisor?" {"position":"800,1000","size":"100,100"}
+Oh yes, Happiness Supervisor. It’s a new job title I invented, ‘Random Task Doer’ wasn’t really getting that many applicants.
+
+[["I thought I was just a security guard"]]
+
+
+:: "How do I send the item to Room 7?" {"position":"675,1625","size":"100,100"}
+Manager: Well, it’s quite simple, really, you can see on the camera feed where the chute you need to send it to is, so just do that
+
+[["The camera doesn't show the room number"]]
+
+
+:: "How much am I getting paid?" {"position":"800,1625","size":"100,100"}
+Splendid, then let's get started.
+Now, your task. One of our guests here in Room 7 has requested for some quiche to be delivered via our-state-of-the-art chute system. There should already be one somewhere in your office, so get to it.
+
+[["How do I send the item to Room 7?"]]
+
+
+
+:: "I still can't figure it out" {"position":"675,1875","size":"100,100"}
+*sigh* Ok, do you see the room layouts on the blueprint? Each layout is unique, so you should be able to work out which room on the cameras is which from there. Once you’ve done that, it should be clear.
+
+
+
+:: "I thought I was just a security guard" {"position":"800,1125","size":"100,100"}
+Yes, we employ that trick too, gets even more people signing up. Your job is basically to do whatever it takes by any means necessary to keep our clients happy. If they’re dissatisfied, it won’t look good for you.
+
+[["Right..."]]
+
+
+:: "No" {"position":"900,1500","size":"100,100"}
+Splendid, then let's get started.
+Now, your task. One of our guests here in Room 7 has requested for some quiche to be delivered via our-state-of-the-art chute system. There should already be one somewhere in your office, so get to it.
+
+[["How do I send the item to Room 7?"]]
+
+
+
+:: "Right..." {"position":"800,1250","size":"100,100"}
+Now, you should be able to see a hatch in the room. This allows you to place items in our state-of-the-art chute system!
+
+[["Chute system?"]]
+
+
+:: "The camera doesn't show the room number" {"position":"675,1750","size":"100,100"}
+I’d expect a Happiness Supervisor to know what the room is, but just in case, I left a blueprint on your desk. You should be able to work it out from there
+
+[["I still can't figure it out"]]
+
+
+:: "This system doesn't let me type my name" {"position":"800,875","size":"100,100"}
+Well, for all intensive purposes, let's call you Steve from here on.
+
+[["Alright"]] 
+[["Why?"]] 
+
+
+:: "Why?" {"position":"675,875","size":"100,100"}
+Why not? It's a good name, isn't it?
+
+Now then, let's discuss your role here with us at our fine establishment. We would like you to fill the role of the "Happiness Supervisor", as it were.
+
+[["Happiness Supervisor?"]]
+
+
+:: "Yes" {"position":"675,1500","size":"100,100"}
+Splendid, then let's get started.
+Now, your task. One of our guests here in Room 7 has requested for some quiche to be delivered via our-state-of-the-art chute system. There should already be one somewhere in your office, so get to it. 
+
+[["How do I send the item to Room 7?"]]
+
+
+
+:: 1 {"position":"675,500","size":"100,100"}
+You have chosen to speak with the manager. One moment.
+
+[[Speak with Manager]]
+
+
+:: 2 {"position":"800,500","size":"100,100"}
+You have chosen to speak with a guest. 
+Unfortunately, there are currently no guests on the system, so I shall redirect you to speak with the manager.
+
+[[Speak with Manager]] 
+
+
+:: 3 {"position":"925,500","size":"100,100"}
+You have chosen to have the floor below you open and send you straight into a pit of lava because it's better than working here. 
+Unfortunately, "health and safety" have prevented us from installing that. 
+We can instead offer you the emotional equivalent of that, which is speaking to the manager.
+
+[[Speak with Manager]] 
+
+
+:: Start {"position":"800,375","size":"100,100"}
+Welcome to the Grandchain Hotel.
+If you would like to speak to the manager, press 1.
+If you would like to speak to a guest, press 2.
+If you would like the floor below you to open up and send you directly to a pit of lava to escape the experience of working here, press 3.
+
+[[1]]
+[[2]]
+[[3]]
+
+
+:: Speak with Manager {"position":"800,625","size":"100,100"}
+Hello? Is this thing working?
+Ah, you must be our new employee. Welcome, welcome.
+Firstly, who are you?
+
+[["Adam"]]
+[["Bob"]]
+[["Derek"]]
+[["This system doesn't let me type my name"]]

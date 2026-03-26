@@ -4596,7 +4596,7 @@ MonoBehaviour:
   webFileURL: 
   imageBaseURL: 
   localFileNames:
-  - Puzzle1Script.twee
+  - Puzzle1ScriptNew.twee
   - Puzzle2Script.twee
   - Puzzle2Script.twee
   unlockRatOnNoChoices: 1
@@ -8383,7 +8383,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &632706782
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16923,7 +16923,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1362774170
 MonoBehaviour:
   m_ObjectHideFlags: 0
