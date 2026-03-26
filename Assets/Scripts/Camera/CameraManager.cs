@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -14,6 +15,8 @@ public class CameraManager : MonoBehaviour
     [SerializeField] private GameObject ratButtonEnabled;
     public bool ratCameraEnabled;
 
+    [SerializeField] private RatSpawner ratSpawner;
+
     private List<string> roomNumbers = new List<string>()
     { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "12", "13", "14", "15", "16", "17", "18" };
 
@@ -27,11 +30,25 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
 
+        // Rat cam should not be in the cycle at boot
+        ratCameraEnabled = false;
+        if (ratButtonEnabled != null) ratButtonEnabled.SetActive(false);
+
+        if (ratPuzzleCamera != null)
+        {
+            // Remove if assigned in the inspector list
+            cameras.Remove(ratPuzzleCamera);
+
+            // Ensure it doesnt render anywhere until activated
+            ratPuzzleCamera.targetTexture = null;
+            ratPuzzleCamera.enabled = false;
+            ratPuzzleCamera.gameObject.SetActive(false);
+        }
+
         renderTextures = new List<RenderTexture>(cameras.Count);
         for (int i = 0; i < cameras.Count; i++)
         {
             RenderTexture tex = new RenderTexture(1280, 720, 0);
-            tex.depthStencilFormat = UnityEngine.Experimental.Rendering.GraphicsFormat.R8_SRGB; 
             renderTextures.Add(tex);
             cameras[i].targetTexture = tex;
         }
@@ -39,8 +56,8 @@ public class CameraManager : MonoBehaviour
         roomNumberDropdown.ClearOptions();
         roomNumberDropdown.AddOptions(roomNumbers);
 
-        cameraLabels = new List<int>(cameras.Count + 1);
-        for (int i = 0; i < cameras.Count + 1; i++)
+        cameraLabels = new List<int>(cameras.Count);
+        for (int i = 0; i < cameras.Count; i++)
             cameraLabels.Add(0);
 
         textureView.gameObject.SetActive(true);
@@ -57,8 +74,11 @@ public class CameraManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftArrow))
             StepCamera(-1);
 
-        if (ratCameraEnabled == false)
-            ratButtonEnabled.SetActive(false);
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ActivateRatPuzzleCamera();
+            Debug.Log($"After activate: cameras={cameras.Count}, renderTextures={renderTextures.Count}, labels={cameraLabels.Count}");
+        }
 
     }
 
@@ -72,6 +92,12 @@ public class CameraManager : MonoBehaviour
 
     private void ApplyCamera(int index)
     {
+        if (index < 0 || index >= renderTextures.Count)
+        {
+            Debug.LogError($"ApplyCamera index out of range. index={index}, renderTextures={renderTextures.Count}");
+            return;
+        }
+
         textureView.texture = renderTextures[index];
         camNumberText.text = "Camera " + (index + 1);
 
@@ -85,6 +111,7 @@ public class CameraManager : MonoBehaviour
 
     public void SetCamera(int index)
     {
+        Debug.Log($"StepCamera() on CameraManager: {gameObject.name} (instanceID {GetInstanceID()}) cameras.Count={cameras.Count}");
         if (cameras == null || cameras.Count == 0) return;
 
         index = Mathf.Clamp(index, 0, cameras.Count - 1);
@@ -95,12 +122,52 @@ public class CameraManager : MonoBehaviour
 
     public void ActivateRatPuzzleCamera()
     {
-        cameras.Add(ratPuzzleCamera);
-        RenderTexture tex = new RenderTexture(1280, 720, 0);
-        renderTextures.Add(tex);
-        ratPuzzleCamera.targetTexture = tex;
+        Debug.Log($"ActivateRatPuzzleCamera() on CameraManager: {gameObject.name} (instanceID {GetInstanceID()})");
+
+        if (ratPuzzleCamera == null)
+        {
+            Debug.LogWarning("Rat Puzzle Camera not assigned in inspector!");
+            return;
+        }
+
+        Debug.Log($"ActivateRatPuzzleCamera called on {gameObject.name}");
+
+        if (!cameras.Contains(ratPuzzleCamera))
+        {
+            cameras.Add(ratPuzzleCamera);
+            cameraLabels.Add(0);
+
+            var tex = new RenderTexture(1280, 720, 0);
+            renderTextures.Add(tex);
+
+            ratPuzzleCamera.gameObject.SetActive(true);
+            ratPuzzleCamera.enabled = true;
+            ratPuzzleCamera.targetTexture = tex;
+
+            Debug.Log($"Added rat cam at index {cameras.Count - 1}");
+        }
 
         ratCameraEnabled = true;
-        ratButtonEnabled.SetActive(true);   
+        if (ratButtonEnabled != null) ratButtonEnabled.SetActive(true);
+
+        StartCoroutine(SwitchToRatCameraNextFrame());
+    }
+
+
+    private IEnumerator SwitchToRatCameraNextFrame()
+    {
+        yield return null;
+        SetCamera(cameras.Count - 1);
+        ratSpawner.puzzleEnabled = true;
+    }
+
+    public void NextCamButton()
+    {
+        StepCamera(+1);
+    }
+
+    public void PreviousCamButton()
+    {
+        StepCamera(-1);
     }
 }

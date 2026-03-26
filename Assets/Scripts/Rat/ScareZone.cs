@@ -9,6 +9,8 @@ public class ScareZone : MonoBehaviour
     private readonly HashSet<RatAI> ratsInside = new HashSet<RatAI>();
     private readonly HashSet<HoldableItem> scaryItemsInside = new HashSet<HoldableItem>();
 
+    [SerializeField] private RatSpawner ratSpawner;
+
     private void OnTriggerEnter(Collider other)
     {
         var rat = other.GetComponentInParent<RatAI>();
@@ -36,7 +38,11 @@ public class ScareZone : MonoBehaviour
         foreach (var r in ratsInside)
         {
             if (r != null) r.Scare();
+            ratSpawner.AddScore();
+
         }
+
+
     }
 
     private void OnTriggerExit(Collider other)
